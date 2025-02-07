@@ -8,12 +8,12 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -g -std=c++11 -Wall -Wno-depre
 set(CMAKE_C_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
 
 
-set(LIB_SRC src/httplib.cc )
+set(LIB_SRC src/httplib.cc)
 add_library(vec SHARED ${LIB_SRC})
 
 add_executable(test test/test.cc)
 add_dependencies(test vec)
-target_link_libraries(test ${LIB_SRC})
+target_link_libraries(test vec)
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
