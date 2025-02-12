@@ -7,15 +7,12 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -g -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
 set(CMAKE_C_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
 
+include_directories(${PROJECT_SOURCE_DIR}/apps/include)
 link_directories(${PROJECT_SOURCE_DIR}/apps/lib)
 
 
-
-set(LIB_SRC src/httplib.cc)
+file(GLOB LIB_SRC ${PROJECT_SOURCE_DIR}/src/*.cc ${PROJECT_SOURCE_DIR}/src/*.h)
 add_library(vec SHARED ${LIB_SRC})
-target_include_directories(vec PUBLIC
-    ${PROJECT_SOURCE_DIR}/apps/include
-)
 TARGET_LINK_LIBRARIES(vec libfaiss.a)
 
 
