@@ -15,12 +15,12 @@ file(GLOB HTTPLIB ${PROJECT_SOURCE_DIR}/src/base/*.cc)
 file(GLOB LIB_SRC ${PROJECT_SOURCE_DIR}/src/*.cc ${PROJECT_SOURCE_DIR}/src/*.h)
 
 add_library(vec SHARED ${LIB_SRC} ${HTTPLIB})
-TARGET_LINK_LIBRARIES(vec libfaiss.a)
+TARGET_LINK_LIBRARIES(vec libfaiss.a librocksdb.a)
 
 
 add_executable(test test/test.cc)
 add_dependencies(test vec)
-target_link_libraries(test vec libfaiss.a)
+target_link_libraries(test vec libfaiss.a librocksdb.a)
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
