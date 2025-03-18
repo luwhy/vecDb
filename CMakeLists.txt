@@ -10,9 +10,11 @@ set(CMAKE_C_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c11 -Wall -Wno-
 include_directories(${PROJECT_SOURCE_DIR}/apps/include)
 link_directories(${PROJECT_SOURCE_DIR}/apps/lib)
 
+file(GLOB HTTPLIB ${PROJECT_SOURCE_DIR}/src/base/*.cc)
 
 file(GLOB LIB_SRC ${PROJECT_SOURCE_DIR}/src/*.cc ${PROJECT_SOURCE_DIR}/src/*.h)
-add_library(vec SHARED ${LIB_SRC})
+
+add_library(vec SHARED ${LIB_SRC} ${HTTPLIB})
 TARGET_LINK_LIBRARIES(vec libfaiss.a)
 
 
